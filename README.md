@@ -11,6 +11,54 @@ apt-install openssh-server
 
 #step 3: Install Munge 
 
+
+##################This is for all nodes:#############################
+sudo su
+apt install gcc
+apt install openssl
+apt install libssl-dev
+apt install make
+
+wget https://github.com/dun/munge/archive/munge-0.5.13.tar.gz
+tar -zxf munge-0.5.13.tar.gz
+cd munge-munge
+
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var && make && make install
+
+
+
+#####################This is for control node ########################
+#create munge key 
+
+dd if=/dev/urandom bs=1 count=1024 >/etc/munge/munge.key
+
+#####################This if for all nodes ###########################
+#create user
+useradd munge -m -s /bin/bash
+#set up passwork
+passwd munge
+#change owership
+chown -R munge.munge /var/{lib,log,run}/munge
+chown -R munge.munge /etc/munge
+#
+chmod 711 /var/lib/munge
+chmod 700 /var/log/munge
+chmod 755 /var/run/munge
+chmod 700 /etc/munge
+chmod 400 /etc/munge/munge.key
+
+##################This is for control node #########################
+scp /etc/munge/munge.key munge@ip:/etc/munge
+
+#####################This if for all nodes ###########################
+#start munge daemon on all machines 
+
+Start munge:     /etc/init.d/munge start
+Check  status:     /etc/init.d/munge status
+
+
+
+
 #step 4: install mysql
 
 #step 5: install slurm
