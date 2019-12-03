@@ -84,5 +84,15 @@ Check  status:     /etc/init.d/munge status
 
 #step 4: install mysql
 
+# libmysqlclient-dev package is very important, otherwise will cause the slurmdbd can not link to mysql database
+
+apt-get install mysql-server mysql-client libmysqlclient-dev libmysqld-dev
+
+systemctl start mysql.service   # start service  
+
+systemctl status mysql # check status
+
+
+
 #step 5: install slurm
 
