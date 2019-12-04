@@ -1,15 +1,15 @@
 # Create-and-Configurate-a-Slurm-Cluster-based-on-Ubuntu-19
 #create a slurm cluster with slurmdbd configurated, mysql linked
 
-#step 1: install openssh-server and connect the machines together with ssh
+# step 1: install openssh-server and connect the machines together with ssh
 
 apt-install openssh-server
 
-#step 2: Install NTP and synchronize all machines
+# step 2: Install NTP and synchronize all machines
 
 #https://vitux.com/how-to-install-ntp-server-and-client-on-ubuntu/
 
-#step 3: Install Munge 
+# step 3: Install Munge 
 
 
 ##################This is for all nodes:#############################
@@ -82,7 +82,7 @@ Check  status:     /etc/init.d/munge status
 
 
 
-#step 4: install mysql
+# step 4: install mysql
 
 #libmysqlclient-dev package is very important, otherwise will cause the slurmdbd can not link to mysql database
 
@@ -94,5 +94,5 @@ systemctl status mysql # check status
 
 
 
-#step 5: install slurm
+# step 5: install slurm
 
