@@ -96,3 +96,15 @@ systemctl status mysql # check status
 
 # step 5: install slurm
 
+
+
+# set up mysql db
+
+The following is recommended for /etc/my.cnf, but on CentOS 7 you should create a new file /etc/my.cnf.d/innodb.cnf containing:
+
+[mysqld]
+innodb_buffer_pool_size=1024M
+innodb_log_file_size=64M
+innodb_lock_wait_timeout=900
+
+https://wiki.fysik.dtu.dk/niflheim/Slurm_database
