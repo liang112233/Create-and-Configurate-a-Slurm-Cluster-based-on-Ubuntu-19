@@ -107,4 +107,11 @@ innodb_buffer_pool_size=1024M
 innodb_log_file_size=64M
 innodb_lock_wait_timeout=900
 
+
+To implement this change you have to shut down the database and move/remove logfiles:
+
+systemctl stop mysql
+mv /var/lib/mysql/ib_logfile? /tmp/
+systemctl start mysql
+
 https://wiki.fysik.dtu.dk/niflheim/Slurm_database
