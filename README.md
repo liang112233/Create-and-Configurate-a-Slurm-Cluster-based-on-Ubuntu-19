@@ -92,15 +92,9 @@ systemctl start mysql.service   # start service
 
 systemctl status mysql # check status
 
+#set up mysql db
 
-
-# step 5: install slurm
-
-
-
-# set up mysql db
-
-The following is recommended for /etc/my.cnf, but on CentOS 7 you should create a new file /etc/my.cnf.d/innodb.cnf containing:
+#The following is recommended for /etc/my.cnf, but on CentOS 7 you should create a new file /etc/my.cnf.d/innodb.cnf containing:
 
 [mysqld]
 
@@ -120,3 +114,32 @@ mv /var/lib/mysql/ib_logfile? /tmp/
 systemctl start mysql
 
 https://wiki.fysik.dtu.dk/niflheim/Slurm_database
+
+#  open mysql in terminal, set mysql
+
+CREATE USER 'slurm'@'localhost IDENTIFIED BY '1234';
+
+GRANT ALL ON slurm_acct_db.* TO 'slurm'@'localhost';
+
+FLUSH PRIVILEGES;
+
+CREATE DATABASE slurm_acct_db;
+
+quit;
+
+mysql -p -u slurm
+
+Tpye password for slurm: 1234. In mysql:
+
+systemctl enable mysql
+
+sacctmgr add cluster fake # fake is my cluster name
+
+
+# step 5: install slurm
+
+https://www.cnblogs.com/haibaraai0913/p/11045295.html
+
+
+
+
